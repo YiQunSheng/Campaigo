@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/titlebar_blue"
+    android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/home_title_bar_style">
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:id="@+id/titleBar_location_lay"
+        android:layout_width="74dp"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal"
+        android:visibility="visible"
+        android:orientation="horizontal"
+      >
+
+        <TextView
+            android:id="@+id/titleBar_city_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="left|center"
+            android:maxLines="2"
+            android:text="城院"
+            android:textSize="14.0sp"
+            android:textColor="@color/white"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="3dp"
+            android:src="@mipmap/nav_icon_aroow_up_s"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="10"
+        android:id="@+id/titleBar_search_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_toRightOf="@id/titleBar_location_lay"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/home_search"/>
+
+        <EditText
+            android:background="@null"
+            android:id="@+id/search_campaign"
+            android:layout_width="182dp"
+            android:layout_height="34dp"
+            android:hint="请输入查询的活动名称"
+            android:textColorHint="@color/app_white"
+            android:textColor="@color/title_bar_search_text_color"
+            android:textSize="14.0sp"
+            />
+
+    </LinearLayout>
+    <TextView
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="Search"
+        android:textSize="18sp"
+        android:id="@+id/activity_search"
+        android:gravity="center"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

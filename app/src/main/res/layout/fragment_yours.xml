@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.activity.MainActivity"
+    >
+
+    <include
+        layout="@layout/yours_title_bar"/>
+    <!-- TODO: Update blank fragment layout -->
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_yours"
+        android:layout_gravity="top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/yours_navigation"
+        />
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/list_yours_campaigns"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+</LinearLayout>

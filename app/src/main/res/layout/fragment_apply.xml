@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/apply_title_bar"/>
+
+    <TextView
+        android:padding="5dp"
+        android:background="#FF9800"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:text="信息填写"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="384dp">
+        <LinearLayout
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:text="活动名称:"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:padding="9dp"
+                android:background="#1976D2"
+                android:textColor="@color/white"
+                android:layout_weight="2.5"
+                />
+
+            <EditText
+                android:id="@+id/edit_apply_name"
+                android:text=""
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:padding="9dp"
+                android:background="#0288D1"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:text="活动开始时间："
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:padding="9dp"
+                android:background="#1976D2"
+                android:textColor="@color/white"
+                android:layout_weight="2.5"
+                />
+
+            <EditText
+                android:textColorHint="#A9A9A9"
+                android:hint="e.g.2017-12-24 9:00:00"
+                android:id="@+id/edit_apply_starttime"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:padding="9dp"
+                android:layout_weight="3"
+                android:background="#0288D1"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:gravity="center"
+                android:text="活动结束时间"
+                android:textSize="18dp"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:padding="9dp"
+                android:background="#1976D2"
+                android:textColor="@color/white"
+                android:layout_weight="2.5"
+                />
+
+            <EditText
+                android:textColorHint="#A9A9A9"
+                android:hint="e.g.2017-12-24 9:00:00"
+                android:id="@+id/edit_apply_finishedline"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="match_parent"
+                android:textSize="18dp"
+                android:padding="9dp"
+                android:background="#0288D1"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:text="报名截止时间："
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:padding="9dp"
+                android:background="#0288D1"
+                android:textColor="@color/white"
+                android:layout_weight="2.5"
+                />
+
+            <EditText
+                android:textColorHint="#A9A9A9"
+                android:hint="e.g.2017-12-24 9:00:00"
+                android:id="@+id/edit_apply_endedline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textSize="18dp"
+                android:padding="9dp"
+                android:background="#1976D2"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:gravity="center"
+                android:text="活动描述："
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textSize="18dp"
+                android:padding="9dp"
+                android:background="#0288D1"
+                android:textColor="@color/white"
+                android:layout_weight="2.5"
+                />
+
+            <EditText
+                android:id="@+id/edit_apply_describe"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="match_parent"
+                android:background="#1976D2"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/button_ApplyCampaign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF9800"
+            android:text="APPLY"
+            android:textSize="20sp"
+            android:layout_margin="20dp"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10sp" />
+
+</LinearLayout>

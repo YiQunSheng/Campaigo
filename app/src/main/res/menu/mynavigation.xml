@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:title="活动界面"
+        android:icon="@mipmap/ic_home_tab_index_selected"
+        android:id="@+id/navi_item_Campaigns" />
+    <item
+    android:title="你的活动"
+    android:icon="@mipmap/list_menu"
+    android:id="@+id/navi_item_YoursCampaigns" />
+
+    <item
+        android:title="活动处理"
+        android:icon="@mipmap/refresh_normal"
+        android:id="@+id/navi_item_UpCampaign" />
+
+    <item
+        android:title="用户界面"
+        android:icon="@mipmap/ic_home_tab_my_selected"
+        android:id="@+id/navi_item_Users" />
+</menu>

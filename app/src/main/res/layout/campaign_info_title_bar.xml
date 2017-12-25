@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/titlebar_blue"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/home_title_bar_style">
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:layout_weight="0.1"
+        android:id="@+id/titleBar_location_lay"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/titleBar_city_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="left|center"
+            android:maxLines="2"
+            android:text="城院"
+            android:textSize="14.0sp"
+            android:textColor="@color/white"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="3dp"
+            android:src="@mipmap/nav_icon_aroow_up_s"/>
+
+    </LinearLayout>
+
+
+
+
+    <TextView
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="活动信息"
+        android:textSize="20sp"
+        android:id="@+id/activity_search"
+        android:paddingTop="6dp"
+        android:textColor="@color/app_white"
+        android:layout_weight="0.72" />
+
+
+    <ImageView
+        android:layout_weight="0.1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@mipmap/icon_home_hotel_300"/>
+
+</LinearLayout>
