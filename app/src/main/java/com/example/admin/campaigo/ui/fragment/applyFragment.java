@@ -30,6 +30,8 @@ package com.example.admin.campaigo.ui.fragment;
         import okhttp3.Call;
         import okhttp3.Response;
 
+        import static android.content.Context.MODE_PRIVATE;
+
 /**
  * Created by shengyiqun on 2017/12/16.
  */
@@ -67,7 +69,7 @@ public class applyFragment extends Fragment {
                     testCam.setEndline(Timestamp.valueOf(edit_apply_endeadTime.getText().toString()));
                     testCam.setDescribe(edit_apply_describe.getText().toString());
                     String testJson = JSON.toJSONString(testCam);
-                    url = DOMIN+getId()+"&info="+testJson;
+                    url = DOMIN+getUserId()+"&info="+testJson;
                     Log.e("Succeed", url);
                     new ApplyTask().execute();
                 }
@@ -111,11 +113,12 @@ public class applyFragment extends Fragment {
         }
     }
     private String UserPreferencetoJson() {
-        SharedPreferences pref = getActivity().getSharedPreferences("user_Info", getActivity().MODE_PRIVATE);
-        String json = pref.getString("User_Json", "");
+        User user = new User();
+        user.init();
+        SharedPreferences pref = getActivity().getSharedPreferences("user_Info", MODE_PRIVATE);
+        String json = pref.getString("User_Json", JSON.toJSONString(user));
         return json;
     }
-
     private boolean isNameValied(String name) {
         return name.length() > 0;
     }
@@ -130,6 +133,11 @@ public class applyFragment extends Fragment {
     }
     private boolean isdescribeValied(String describe) {
         return describe.length() > 0;
+    }
+    private String getUserId() {
+        String UserJson = UserPreferencetoJson();
+        User user = JSON.parseObject(UserJson, User.class);
+        return user.getId();
     }
 }
 

@@ -87,7 +87,7 @@ public class login_Activity extends AppCompatActivity implements View.OnClickLis
 
 
 
-    class LoginTask extends AsyncTask<Void, Integer, Boolean> {
+     class LoginTask extends AsyncTask<Void, Integer, Boolean> {
         @Override
         protected void onPreExecute() {
             Log.e("PreExecute", "Success");
@@ -139,7 +139,7 @@ public class login_Activity extends AppCompatActivity implements View.OnClickLis
         }
     }
     //这两个不用调用，是判断输入用的
-    private boolean isNameValied(String name) {
+    public boolean isNameValied(String name) {
         return name.length() > 0;
     }
     private boolean isPasswdValied(String passwd) {
