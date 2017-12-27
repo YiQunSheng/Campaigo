@@ -9,7 +9,7 @@
 <TextView
     android:layout_weight="1"
     android:gravity="center"
-    android:textColor="#FF9800"
+    android:textColor="@color/primary_dark"
     android:textSize="40sp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="账号："
-        android:textColor="@color/app_yellow"
+        android:textColor="@color/primary_dark"
         android:textSize="25sp" />
     <EditText
         android:layout_margin="10dp"
@@ -37,16 +37,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="密码："
-        android:textColor="@color/app_yellow"
+        android:textColor="@color/primary_dark"
         android:textSize="25sp" />
+
     <EditText
-        android:layout_margin="10dp"
-        android:hint="please insert  password"
+        android:id="@+id/edit_passwd"
+        style="@style/login_editText_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/login_editText_style"
-        android:inputType="textPassword"
-        android:id="@+id/edit_passwd"/>
+        android:layout_margin="10dp"
+        android:hint="please insert  password"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:textColor="@color/primary_light"
+        android:layout_margin="15dp"
+        android:gravity="right"
+        android:text="密码长度为1-15位"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>
     <ProgressBar
         android:layout_weight="0.1"
@@ -61,7 +70,7 @@
         android:id="@+id/button_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FF9800"
+        android:background="@color/accent"
         android:text="Login"
         android:textSize="20sp"
         android:textColor="@color/white"

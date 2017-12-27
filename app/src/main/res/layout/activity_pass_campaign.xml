@@ -135,6 +135,7 @@
                 android:id="@+id/text_pass_endedtime"
                 android:layout_width="0dp"
                 android:layout_weight="3"
+                android:textSize="18dp"
                 android:layout_height="match_parent"
                 android:background="#1976D2"
                 android:textColor="@color/white" />

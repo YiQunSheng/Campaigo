@@ -138,12 +138,12 @@ public class login_Activity extends AppCompatActivity implements View.OnClickLis
             return null;
         }
     }
-    //这两个不用调用，是判断输入用的
+    //这两个不用调用，是判断输入用的.Name=1~8,Passwd<16
     public boolean isNameValied(String name) {
-        return name.length() > 0;
+        return (name.length() > 0&&name.length()<9);
     }
     private boolean isPasswdValied(String passwd) {
-        return passwd.length() > 0;
+        return (passwd.length() > 0&&passwd.length()<16);
     }
     private void UserJsontoPreference(String UserJson) {
         SharedPreferences.Editor editor = getSharedPreferences("user_Info", MODE_PRIVATE).edit();

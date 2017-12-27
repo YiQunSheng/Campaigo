@@ -41,6 +41,8 @@
                 />
 
             <EditText
+                android:hint="不超过15字"
+                android:textColorHint="@color/primary_light"
                 android:maxLines="1"
                 android:id="@+id/edit_apply_name"
                 android:text=""
@@ -163,6 +165,8 @@
                 />
 
             <EditText
+                android:hint=" 不超过30字"
+                android:textColorHint="@color/primary_light"
                 android:maxLines="1"
                 android:id="@+id/edit_apply_describe"
                 android:layout_width="0dp"

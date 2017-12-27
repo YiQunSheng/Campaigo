@@ -36,6 +36,7 @@ import com.example.admin.campaigo.network.HttpUtil;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -311,6 +312,7 @@ public class campaignsFragment extends  Fragment {
                 Response response = client.newCall(request).execute();
                 campaignsJson= response.body().string();
                 searchCampaigns = JSON.parseArray(campaignsJson, Campaign.class);
+                Collections.reverse(searchCampaigns); // 倒序排列
             } catch (IOException e) {
                 e.printStackTrace();
             }

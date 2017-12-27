@@ -204,7 +204,7 @@ public class applyFragment extends Fragment {
         return json;
     }
     private boolean isNameValied(String name) {
-        return name.length() > 0;
+        return (name.length() > 0&&name.length()<16);
     }
     private boolean isStartValied(String start) {
         return start.length() > 0;
@@ -216,7 +216,7 @@ public class applyFragment extends Fragment {
         return endead.length() > 0;
     }
     private boolean isdescribeValied(String describe) {
-        return describe.length() > 0;
+        return (describe.length() > 0&&describe.length()<=30);
     }
     private String getUserId() {
         String UserJson = UserPreferencetoJson();

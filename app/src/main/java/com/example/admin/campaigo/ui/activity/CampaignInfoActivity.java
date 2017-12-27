@@ -54,10 +54,10 @@ public class CampaignInfoActivity extends AppCompatActivity {
         endeadTimestamp = Timestamp.valueOf(intent.getStringExtra("endeadTime"));
         button_TakePart = (Button) findViewById(R.id.button_takePartIn);
         campaignId = String.valueOf(intent.getIntExtra("id",0));
-        Log.e("id", campaignId);
+        Log.d("id", campaignId);
         hasTokenPartInurl = hasTokenPartInurl + campaignId + "&userid=" + getId();
         url = url + getId() + "&caid=" + campaignId;
-        Log.e("=====》》》", url);
+        Log.d("=====》》》", url);
         HttpUtil.sendOkHttpRequest(hasTokenPartInurl, new okhttp3.Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -70,7 +70,6 @@ public class CampaignInfoActivity extends AppCompatActivity {
                 Log.e("has??", hasToken);
             }
         });
-
         button_TakePart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
