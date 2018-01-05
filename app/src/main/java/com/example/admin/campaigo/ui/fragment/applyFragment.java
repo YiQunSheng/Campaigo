@@ -34,6 +34,7 @@ package com.example.admin.campaigo.ui.fragment;
         import java.text.SimpleDateFormat;
         import java.util.Calendar;
         import java.util.Locale;
+        import java.util.regex.Pattern;
 
         import okhttp3.Call;
         import okhttp3.Response;
@@ -45,6 +46,7 @@ package com.example.admin.campaigo.ui.fragment;
  */
 
 public class applyFragment extends Fragment {
+    public static final String REGEX_USERNAME ="^[A-Za-z0-9\u4e00-\u9fa5]+";//利用正则表达式，规定只能是字母，数字，中文
     @Nullable
     String DOMIN = "http://115.159.55.118/campaign/ask?id=";
     String url;
@@ -204,7 +206,7 @@ public class applyFragment extends Fragment {
         return json;
     }
     private boolean isNameValied(String name) {
-        return (name.length() > 0&&name.length()<16);
+        return (name.length() > 0&&name.length()<16&&(Pattern.matches(REGEX_USERNAME,name)));
     }
     private boolean isStartValied(String start) {
         return start.length() > 0;
@@ -216,7 +218,7 @@ public class applyFragment extends Fragment {
         return endead.length() > 0;
     }
     private boolean isdescribeValied(String describe) {
-        return (describe.length() > 0&&describe.length()<=30);
+        return (describe.length() > 0&&describe.length()<=30&&(Pattern.matches(REGEX_USERNAME,describe)));
     }
     private String getUserId() {
         String UserJson = UserPreferencetoJson();

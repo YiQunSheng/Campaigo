@@ -34,6 +34,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/edit_username"/>
     <TextView
+        android:textColor="@color/primary_light"
+        android:layout_margin="15dp"
+        android:gravity="right"
+        android:text="密码长度为1-15位,仅限数字，字母"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="密码："
@@ -53,7 +60,7 @@
         android:textColor="@color/primary_light"
         android:layout_margin="15dp"
         android:gravity="right"
-        android:text="密码长度为1-15位"
+        android:text="密码长度为1-15位,仅限数字，字母"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

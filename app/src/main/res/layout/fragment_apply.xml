@@ -6,6 +6,7 @@
         layout="@layout/apply_title_bar"/>
 
     <TextView
+        android:layout_marginBottom="20dp"
         android:padding="5dp"
         android:background="#FF9800"
         android:textColor="@color/white"
@@ -32,8 +33,8 @@
                 android:text="活动名称:"
                 android:gravity="center"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:layout_height="50dp"
+                android:textSize="17dp"
                 android:padding="9dp"
                 android:background="#1976D2"
                 android:textColor="@color/white"
@@ -41,15 +42,15 @@
                 />
 
             <EditText
-                android:hint="不超过15字"
+                android:hint="中文英文数字不超过15字"
                 android:textColorHint="@color/primary_light"
                 android:maxLines="1"
                 android:id="@+id/edit_apply_name"
                 android:text=""
                 android:layout_weight="3"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:layout_height="50dp"
+                android:textSize="17dp"
                 android:padding="9dp"
                 android:background="#0288D1"
                 android:textColor="@color/white" />
@@ -165,7 +166,7 @@
                 />
 
             <EditText
-                android:hint=" 不超过30字"
+                android:hint=" 中英文数字不超过30字"
                 android:textColorHint="@color/primary_light"
                 android:maxLines="1"
                 android:id="@+id/edit_apply_describe"

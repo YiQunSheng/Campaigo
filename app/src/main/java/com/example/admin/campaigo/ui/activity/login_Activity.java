@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.regex.Pattern;
 
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
@@ -39,6 +40,7 @@ import okhttp3.Response;
  */
 
 public class login_Activity extends AppCompatActivity implements View.OnClickListener{
+    public static final String REGEX_USERNAME ="^[A-Za-z0-9]+";//利用正则表达式，规定只能是字母
     static String DOMIN = "http://115.159.55.118/";
     final String myUrl = "http://115.159.55.118/login?un=31501337&pw=MTIzNDU2";
     TextView responseText;
@@ -140,10 +142,10 @@ public class login_Activity extends AppCompatActivity implements View.OnClickLis
     }
     //这两个不用调用，是判断输入用的.Name=1~8,Passwd<16
     public boolean isNameValied(String name) {
-        return (name.length() > 0&&name.length()<9);
+        return (name.length() > 5&&name.length()<9&&(Pattern.matches(REGEX_USERNAME,name)));
     }
     private boolean isPasswdValied(String passwd) {
-        return (passwd.length() > 0&&passwd.length()<16);
+        return (passwd.length() >=6&&passwd.length()<=15&&(Pattern.matches(REGEX_USERNAME,passwd)));
     }
     private void UserJsontoPreference(String UserJson) {
         SharedPreferences.Editor editor = getSharedPreferences("user_Info", MODE_PRIVATE).edit();
