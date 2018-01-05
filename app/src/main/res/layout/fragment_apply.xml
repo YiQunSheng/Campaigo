@@ -17,7 +17,9 @@
         android:layout_width="match_parent"
         android:text="信息填写"
         android:layout_height="wrap_content" />
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:gravity="center"
         android:orientation="vertical"
@@ -42,18 +44,18 @@
                 />
 
             <EditText
-                android:hint="中文英文数字不超过15字"
-                android:textColorHint="@color/primary_light"
-                android:maxLines="1"
                 android:id="@+id/edit_apply_name"
-                android:text=""
-                android:layout_weight="3"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:textSize="17dp"
-                android:padding="9dp"
+                android:layout_weight="3"
                 android:background="#0288D1"
-                android:textColor="@color/white" />
+                android:hint="中英文数字不超过15字"
+                android:maxLines="1"
+                android:padding="9dp"
+                android:text=""
+                android:textColor="@color/white"
+                android:textColorHint="@color/primary_light"
+                android:textSize="17dp" />
 
         </LinearLayout>
 
@@ -139,7 +141,7 @@
                 android:textColorHint="#A9A9A9"
                 android:id="@+id/edit_apply_endedline"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:textSize="18dp"
                 android:padding="9dp"
@@ -177,19 +179,21 @@
                 android:textColor="@color/white" />
 
         </LinearLayout>
-        <Button
-            android:id="@+id/button_ApplyCampaign"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FF9800"
-            android:text="APPLY"
-            android:textSize="20sp"
-            android:layout_margin="20dp"
-            android:textColor="@color/white"/>
-    </LinearLayout>
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/button_ApplyCampaign"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FF9800"
+                android:text="APPLY"
+                android:textSize="20sp"
+                android:layout_margin="20dp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="10sp" />
+    </LinearLayout>
+</ScrollView>
 
 </LinearLayout>
