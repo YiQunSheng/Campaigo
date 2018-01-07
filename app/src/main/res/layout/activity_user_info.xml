@@ -7,8 +7,14 @@
     android:layout_height="match_parent"
     tools:context="com.example.admin.campaigo.ui.fragment.userFragment"
     android:weightSum="1">
-    <include
-        layout="@layout/user_title_bar"/>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/login_bar"
+        app:title="个人信息"
+        app:titleTextColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary">
+    </android.support.v7.widget.Toolbar>
 
     <ImageView
         android:layout_margin="15sp"
@@ -119,29 +125,15 @@
                 android:textColor="@color/white" />
 
         </LinearLayout>
-
-
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/text_NoLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="还没有登陆？去登陆"/>
     <Button
         android:id="@+id/button_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFC107"
-        android:text="login"
+        android:text="登录"
         android:layout_margin="15sp"
         />
-    <Button
-        android:id="@+id/button_logout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FF9800"
-        android:text="log out"
-        android:layout_margin="15sp"
-        />
+
 </LinearLayout>

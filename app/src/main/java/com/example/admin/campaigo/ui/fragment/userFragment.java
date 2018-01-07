@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.alibaba.fastjson.JSON;
 import com.example.admin.campaigo.ui.activity.MainActivity;
@@ -28,11 +29,11 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 public class userFragment extends Fragment implements View.OnClickListener{
-    TextView textView;
     TextView text_name;
     TextView text_class;
     TextView text_position;
     TextView text_NoLogin;
+    Button button_login;
     Button button_logout;
     @Nullable
     @Override
@@ -41,21 +42,18 @@ public class userFragment extends Fragment implements View.OnClickListener{
          text_name = (TextView) view.findViewById(R.id.text_name);
          text_class = (TextView) view.findViewById(R.id.text_class);
          text_position = (TextView) view.findViewById(R.id.text_position);
-        text_NoLogin = (TextView) view.findViewById(R.id.text_NoLogin);
-        textView = (TextView) view.findViewById(R.id.text_NoLogin);
-        Button button = (Button) view.findViewById(R.id.button_login);
-        button_logout = (Button)view.findViewById(R.id.button_logout);
-        button.setOnClickListener(this);
-        button_logout.setOnClickListener(this);
+        button_login = (Button) view.findViewById(R.id.button_login);
+        button_login.setOnClickListener(this);
+        if(!NoLogedIn())
+            button_login.setText("退出登录");
+        else button_login.setText("登录");
+
         String json = UserPreferencetoJson();
         User user = JSON.parseObject(json, User.class);
         Log.e("json", user.getUsname());
         text_name.setText(user.getUsname());
         text_class.setText(user.getClassName());
         text_position.setText(user.getPosition());
-        if (!user.isErrorLogin())
-            text_NoLogin.setVisibility(View.INVISIBLE);
-
         return view;
     }
 
@@ -84,27 +82,37 @@ public class userFragment extends Fragment implements View.OnClickListener{
         Log.e("getPre",json );
         return json;
     }
+    private Boolean NoLogedIn() {
+        String userJson = UserPreferencetoJson();
+        User user = JSON.parseObject(userJson, User.class);
+        Log.e("position", userJson);
+        return user.isErrorLogin();
+    }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_login:
                 Log.e("cilck log in", "true");
-                Intent intent = new Intent(getActivity(), login_Activity.class);
-                startActivity(intent);
-                textView.setVisibility(View.INVISIBLE);
-                break;
-            case R.id.button_logout:
-                Log.e("cilck log in", "true");
-                SharedPreferences.Editor editor = getActivity().getSharedPreferences("user_Info", getActivity().MODE_PRIVATE).edit();
-                User user = new User();
-                user.setErrorLogin(true);
-                editor.putString("User_Json", JSON.toJSONString(user));
-                editor.apply();
-                text_name.setText("");
-                text_class.setText("");
-                text_position.setText("");
-                Toast.makeText(getActivity(), "退出成功！", Toast.LENGTH_SHORT).show();
+                if (NoLogedIn()) {
+                    Intent intent = new Intent(getActivity(), login_Activity.class);
+                    startActivity(intent);
+//                    button_login.setText("退出登陆");
+                    break;
+                } else {
+                    Log.e("cilck log in", "true");
+                    SharedPreferences.Editor editor = getActivity().getSharedPreferences("user_Info", getActivity().MODE_PRIVATE).edit();
+                    User user = new User();
+                    user.setErrorLogin(true);
+                    editor.putString("User_Json", JSON.toJSONString(user));
+                    editor.apply();
+                    text_name.setText("");
+                    text_class.setText("");
+                    text_position.setText("");
+                    Toast.makeText(getActivity(), "退出成功！", Toast.LENGTH_SHORT).show();
+                    button_login.setText("登录");
+                    break;
+                }
             default:
                 break;
 

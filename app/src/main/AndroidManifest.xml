@@ -3,7 +3,7 @@
     package="com.example.admin.campaigo">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@drawable/campaigo_logo"

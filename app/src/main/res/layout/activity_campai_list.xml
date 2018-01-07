@@ -87,19 +87,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
-            android:text="最新活动浏览"
+            android:text="校园活动浏览"
             android:textSize="25sp"
             android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@mipmap/icon_back"/>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@mipmap/icon_back"/>
+
     </LinearLayout>
 <android.support.v4.widget.SwipeRefreshLayout
     android:layout_weight="1.5"

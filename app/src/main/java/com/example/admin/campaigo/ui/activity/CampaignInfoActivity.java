@@ -35,15 +35,27 @@ public class CampaignInfoActivity extends AppCompatActivity {
     String hasToken;
     Button button_TakePart;
     Timestamp endeadTimestamp;
+    android.support.v7.widget.Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campaign_info);
+        toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.Info_Toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         text_name= (TextView) findViewById(R.id.text_campaignInfo_name);
         text_start = (TextView) findViewById(R.id.text_campaignInfo_start);
         text_endead = (TextView) findViewById(R.id.text_campaignInfo_endedtime);
         text_end= (TextView) findViewById(R.id.text_campaignInfo_end);
         text_describe=(TextView) findViewById(R.id.text_campaignInfo_describe);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
         Intent intent = getIntent();
         text_name.setText(intent.getStringExtra("name"));

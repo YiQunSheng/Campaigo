@@ -7,9 +7,14 @@
     tools:context=".ui.activity.MainActivity"
     >
 
-    <include
-        layout="@layout/yours_title_bar"/>
-    <!-- TODO: Update blank fragment layout -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/yours_Toolbar"
+        app:title="你的活动"
+        app:titleTextColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary">
+    </android.support.v7.widget.Toolbar>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_yours"

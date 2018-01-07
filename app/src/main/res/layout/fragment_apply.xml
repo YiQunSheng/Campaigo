@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include
-        layout="@layout/apply_title_bar"/>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/login_bar"
+        app:title="活动申请"
+        app:titleTextColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary">
+    </android.support.v7.widget.Toolbar>
 
     <TextView
         android:layout_marginBottom="20dp"
@@ -187,7 +195,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FF9800"
-                android:text="APPLY"
+                android:text="申请"
                 android:textSize="20sp"
                 android:layout_margin="20dp"
                 android:textColor="@color/white"/>

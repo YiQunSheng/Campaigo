@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        layout="@layout/login_title_bar"/>
-
+    <!--<include
+        layout="@layout/login_title_bar"/>-->
+<android.support.v7.widget.Toolbar
+    android:id="@+id/login_bar"
+    app:title="登录"
+    app:titleTextColor="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/primary">
+</android.support.v7.widget.Toolbar>
 <TextView
     android:layout_weight="1"
     android:gravity="center"
@@ -13,7 +22,7 @@
     android:textSize="40sp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Please Login!"/>
+    android:text="请登录"/>
 <LinearLayout
     android:layout_margin="15dp"
     android:layout_weight="2"
@@ -28,18 +37,11 @@
         android:textSize="25sp" />
     <EditText
         android:layout_margin="10dp"
-        android:hint="please insert user name"
+        android:hint="账号长度为1-15位,限数字字母"
         style="@style/login_editText_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edit_username"/>
-    <TextView
-        android:textColor="@color/primary_light"
-        android:layout_margin="15dp"
-        android:gravity="right"
-        android:text="密码长度为1-15位,仅限数字，字母"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,16 +55,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="please insert  password"
+        android:hint="密码长度为1-15位,限数字字母"
         android:inputType="textPassword" />
 
-    <TextView
-        android:textColor="@color/primary_light"
-        android:layout_margin="15dp"
-        android:gravity="right"
-        android:text="密码长度为1-15位,仅限数字，字母"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+
 </LinearLayout>
     <ProgressBar
         android:layout_weight="0.1"
@@ -78,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/accent"
-        android:text="Login"
+        android:text="登录"
         android:textSize="20sp"
         android:textColor="@color/white"
         />

@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 <item
     android:id="@+id/item_yours_comming"
-    android:title="Comming Campaigns"/>
+    android:title="未开始的活动"/>
     <item
         android:id="@+id/item_yours_finished"
-        android:title="Finished Campaigns"/>
+        android:title="已结束的活动"/>
 
 </menu>

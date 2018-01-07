@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/titlebar_blue"
+    android:background="@color/primary"
     android:orientation="horizontal"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/home_title_bar_style">
@@ -26,12 +26,7 @@
             android:textSize="14.0sp"
             android:textColor="@color/white"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="3dp"
-            android:src="@mipmap/nav_icon_aroow_up_s"/>
+
 
     </LinearLayout>
 
@@ -74,7 +69,7 @@
         android:padding="10dp"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="Search"
+        android:text="搜索"
         android:textSize="18sp"
         android:id="@+id/activity_search"
         android:gravity="center"

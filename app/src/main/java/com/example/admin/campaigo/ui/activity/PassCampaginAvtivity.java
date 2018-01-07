@@ -32,7 +32,7 @@ public class PassCampaginAvtivity extends AppCompatActivity {
     String hasTokenPartInurl = "http://115.159.55.118/campaign/regStatus?campaiId=";
     String hasPassed;
     Button button_Pass;
-
+    android.support.v7.widget.Toolbar toolbar;
 
 
     @Override
@@ -44,6 +44,10 @@ public class PassCampaginAvtivity extends AppCompatActivity {
         text_ended=(TextView) findViewById(R.id.text_pass_endedtime);
         text_end=(TextView) findViewById(R.id.text_pass_end);
         text_describe=(TextView) findViewById(R.id.text_pass_describe);
+        toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.Pass_Toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         text_name.setText(intent.getStringExtra("name"));
         text_start.setText(intent.getStringExtra("startTime"));
@@ -62,7 +66,12 @@ public class PassCampaginAvtivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
     }
