@@ -11,10 +11,6 @@
     android:icon="@mipmap/list_menu"
     android:id="@+id/navi_item_YoursCampaigns" />
 
-    <item
-        android:title="活动处理"
-        android:icon="@mipmap/refresh_normal"
-        android:id="@+id/navi_item_UpCampaign" />
 
     <item
         android:title="用户界面"

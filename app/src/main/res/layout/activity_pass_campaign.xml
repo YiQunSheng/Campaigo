@@ -14,180 +14,210 @@
         android:layout_height="wrap_content"
         android:background="@color/primary">
     </android.support.v7.widget.Toolbar>
-    <TextView
-        android:padding="5dp"
-        android:background="#FF9800"
-        android:textColor="@color/white"
-        android:layout_marginTop="30dp"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"
+    <ScrollView
         android:layout_width="match_parent"
-        android:text="通过此活动吗？"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
+            android:layout_height="384dp">
+            <LinearLayout
+                android:background="@color/primary"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_margin="16dp"
+                    android:layout_gravity="center"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/campaigns_white"/>
+                <TextView
+                    android:layout_margin="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="您要通过本活动吗？"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"/>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/campaignnameTag"
-                android:layout_width="0dp"
+            <LinearLayout
+
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2.5"
-                android:background="#1976D2"
-                android:gravity="center"
-                android:padding="9dp"
-                android:text="活动名称:"
-                android:textColor="@color/white"
-                android:textSize="18dp" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/text_pass_name"
-                android:layout_width="0dp"
+                <TextView
+                    android:text="活动名称:"
+                    android:gravity="left|center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:padding="9dp"
+                    android:textColor="@color/secondary_text"
+                    android:layout_weight="2.5"
+                    />
+                <TextView
+                    android:id="@+id/text_pass_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="中英文数字不超过15字"
+                    android:textColorHint="#A9A9A9"
+                    android:maxLines="1"
+                    android:padding="9dp"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+            <View
+                android:background="@color/secondary_text"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:background="#0288D1"
-                android:padding="9dp"
-                android:text=""
-                android:textColor="@color/white"
-                android:textSize="18dp" />
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:gravity="center"
+                    android:padding="9dp"
+                    android:text="活动开始时间："
+                    android:textColor="@color/secondary_text"
+                    android:textSize="16sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
+                <TextView
+                    android:text="点击设置开始时间"
+                    android:id="@+id/text_pass_start"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:padding="9dp"
+                    android:textSize="16dp"
+                    android:textColor="#A9A9A9"
+                    android:textColorHint="#A9A9A9" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.5"
-                android:background="#0288D1"
-                android:gravity="center"
-                android:padding="9dp"
-                android:text="开始时间："
-                android:textColor="@color/white"
-                android:textSize="18dp" />
-
-            <TextView
-                android:id="@+id/text_pass_start"
-                android:layout_width="0dp"
+            </LinearLayout>
+            <View
+                android:background="@color/secondary_text"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+            <LinearLayout
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:background="#1976D2"
-                android:padding="9dp"
-                android:textColor="@color/white"
-                android:textSize="18dp" />
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:gravity="left"
+                    android:text="活动结束时间"
+                    android:textSize="16dp"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:padding="9dp"
+                    android:textColor="@color/secondary_text"
+                    android:layout_weight="2.5"
+                    />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
+                <TextView
+                    android:text="点击设置结束时间"
+                    android:id="@+id/text_pass_end"
+                    android:layout_width="match_parent"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:padding="9dp"
+                    android:textColor="#A9A9A9" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.5"
-                android:background="#1976D2"
-                android:gravity="center"
-                android:padding="9dp"
-                android:text="结束时间"
-                android:textColor="@color/white"
-                android:textSize="18dp" />
-
-            <TextView
-                android:id="@+id/text_pass_end"
-                android:layout_width="0dp"
+            </LinearLayout>
+            <View
+                android:background="@color/secondary_text"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+            <LinearLayout
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:background="#0288D1"
-                android:padding="9dp"
-                android:textColor="@color/white"
-                android:textSize="18dp" />
+                android:orientation="vertical">
 
+                <TextView
+                    android:text="报名截止时间："
+                    android:gravity="left"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:padding="9dp"
+                    android:textColor="@color/secondary_text"
+                    android:layout_weight="2.5"
+                    />
+
+                <TextView
+                    android:text="点击设置报名截止时间"
+                    android:textColorHint="#A9A9A9"
+                    android:id="@+id/text_pass_endedtime"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:textSize="16dp"
+                    android:padding="9dp"
+                    android:textColor="#A9A9A9" />
+
+            </LinearLayout>
+            <View
+                android:background="@color/secondary_text"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+            <LinearLayout
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:gravity="left"
+                    android:text="活动描述："
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="16dp"
+                    android:padding="9dp"
+                    android:textColor="@color/secondary_text"
+                    android:layout_weight="2.5"
+                    />
+
+                <TextView
+                    android:hint="中英文数字不超过30字"
+                    android:maxLines="3"
+                    android:id="@+id/text_pass_describe"
+                    android:layout_width="match_parent"
+                    android:layout_weight="3"
+                    android:padding="9dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/secondary_text" />
+
+            </LinearLayout>
+            <View
+                android:background="@color/secondary_text"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/button_passCampaign"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FF9800"
+                    android:text="通过本活动"
+                    android:textSize="20sp"
+                    android:layout_margin="20dp"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.5"
-                android:background="#0288D1"
-                android:gravity="center"
-                android:padding="9dp"
-                android:text="报名截止："
-                android:textColor="@color/white"
-                android:textSize="18dp" />
-
-            <TextView
-                android:layout_gravity="center"
-                android:id="@+id/text_pass_endedtime"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:background="#1976D2"
-                android:textColor="@color/white"
-                android:textSize="18dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.5"
-                android:background="#1976D2"
-                android:gravity="center"
-                android:padding="9dp"
-                android:text="活动描述："
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/text_pass_describe"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:background="#0288D1"
-                android:padding="9dp"
-                android:textColor="@color/white" />
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/button_passCampaign"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="#FF9800"
-            android:text="通过"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-    </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>

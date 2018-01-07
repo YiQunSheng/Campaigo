@@ -8,8 +8,9 @@
     tools:context="com.example.admin.campaigo.ui.fragment.userFragment"
     android:weightSum="1">
     <android.support.v7.widget.Toolbar
-        android:id="@+id/login_bar"
+        android:id="@+id/User_Toolbar"
         app:title="个人信息"
+        app:popupTheme="@style/AppTheme"
         app:titleTextColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

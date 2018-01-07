@@ -2,8 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 <item
     android:id="@+id/item_yours_comming"
+    android:icon="@android:drawable/ic_menu_today"
     android:title="未开始的活动"/>
     <item
+        android:icon="@android:drawable/ic_menu_today"
         android:id="@+id/item_yours_finished"
         android:title="已结束的活动"/>
 

@@ -5,12 +5,14 @@ package com.example.admin.campaigo.ui.fragment;
  */
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +28,8 @@ import com.example.admin.campaigo.R;
 import com.example.admin.campaigo.model.Campaign;
 import com.example.admin.campaigo.model.User;
 import com.example.admin.campaigo.network.HttpUtil;
+import com.example.admin.campaigo.ui.activity.ApplyActivity;
+import com.example.admin.campaigo.ui.activity.login_Activity;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -48,17 +52,28 @@ public class yoursFragment extends Fragment {
     List<Campaign> commingCampaigns = new ArrayList<>();
     List<Campaign> passedCampaigns = new ArrayList<>();
     static String DOMIN = "http://115.159.55.118/campaign/myList?id=";
-    //    static String DOMIN = "http://115.159.55.118/campaign/GetAll";
     String url;
     String CampaignsJson;
     RecyclerView recyclerView;
     CampaiAdapter adapter;
+    FloatingActionButton fab;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         url = DOMIN + getUserId();
         Log.e("url,", url);
         inCampaigns = new ArrayList<>();
         View view = inflater.inflate(R.layout.fragment_yours, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.list_yours_campaigns);
+        fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        if(getPosition().equals("stu"))
+            fab.setVisibility(View.INVISIBLE);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ApplyActivity.class);
+                startActivity(intent);
+
+            }
+        });
         final BottomNavigationView navigation = (BottomNavigationView) view.findViewById(R.id.bottom_yours);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
@@ -180,6 +195,12 @@ public class yoursFragment extends Fragment {
         String UserJson = UserPreferencetoJson();
         User user = JSON.parseObject(UserJson, User.class);
         return user.getId();
+    }
+    private String getPosition() {
+        String userJson = UserPreferencetoJson();
+        User user = JSON.parseObject(userJson, User.class);
+        Log.e("position", userJson);
+        return user.getPosition();
     }
     private List<Campaign> getPassedCampaigns(String CampaignsJson) {
         //此处传入用网络方法获得的Json（活动列表）,解析成List，返回已经结束的该同学已经参加的活动。

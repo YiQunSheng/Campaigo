@@ -67,16 +67,22 @@ public class MainActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.navi_item_YoursCampaigns:
-                    replaceFragment(new yoursFragment());
+                    if(getPosition().equals("org")||getPosition().equals("stu")){
+                        replaceFragment(new yoursFragment());
+                    } else if (getPosition().equals("tea")) {
+                        replaceFragment(new PassCampaignFragment());
+                    } else {
+                        replaceFragment(new NoAccessFragment());
+                    }
                     return true;
 
-                case R.id.navi_item_UpCampaign:
+               /* case R.id.navi_item_UpCampaign:
                     if(getPosition().equals("org"))
                         replaceFragment(new applyFragment());
                     else if(getPosition().equals("tea"))
                         replaceFragment(new PassCampaignFragment());
                     else replaceFragment(new NoAccessFragment());
-                    return true;
+                    return true;*/
 
                 case R.id.navi_item_Users:
                     replaceFragment(new userFragment());

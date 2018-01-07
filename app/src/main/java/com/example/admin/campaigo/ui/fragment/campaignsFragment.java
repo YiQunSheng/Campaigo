@@ -292,7 +292,6 @@ public class campaignsFragment extends  Fragment {
             recyclerView = (RecyclerView)getActivity().findViewById(R.id.campai_list_recycler);
             LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
             listAdapter = new CampaiAdapter(searchCampaigns);
-
             recyclerView.setAdapter(listAdapter);
             recyclerView.setLayoutManager(layoutManager);
             listAdapter.notifyDataSetChanged();

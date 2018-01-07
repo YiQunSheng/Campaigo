@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <android.support.v7.widget.Toolbar
-        android:id="@+id/login_bar"
+        android:id="@+id/User_Toolbar"
         app:title="个人信息"
         app:titleTextColor="@color/white"
         android:layout_width="match_parent"
@@ -19,22 +19,24 @@
         android:layout_weight="1">
         <ImageView
             android:layout_margin="16dp"
-            android:layout_gravity="center_vertical||center_horizontal"
+            android:layout_gravity="center"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/head"/>
         <TextView
+            android:id="@id/text_name"
             android:layout_margin="8dp"
             android:gravity="center"
-            android:text="杨枨"
+            android:text="您还没有登录"
             android:textSize="24sp"
             android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/text_class"
             android:layout_margin="8dp"
             android:gravity="center"
-            android:text="计算学院"
+            android:text="请登录"
             android:textSize="24sp"
             android:textColor="@color/white"
             android:layout_width="match_parent"
@@ -51,12 +53,19 @@
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <TextView
-            android:layout_margin="16dp"
-            android:text="TEA"
-            android:textSize="16sp"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text_position"
+                android:layout_margin="16dp"
+                android:text="未登录"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
         <TextView
             android:background="@color/secondary_text"
             android:textSize="24sp"

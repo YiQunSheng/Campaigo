@@ -17,14 +17,31 @@
     </android.support.v7.widget.Toolbar>
 
     <android.support.design.widget.BottomNavigationView
+        app:itemTextColor="@color/primary"
         android:id="@+id/bottom_yours"
-        android:layout_gravity="top"
+        android:layout_gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/yours_navigation"
         />
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/list_yours_campaigns"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:layout_weight="1"
+            android:id="@+id/list_yours_campaigns"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:backgroundTint="@color/accent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
+            app:srcCompat="@drawable/plus" />
+    </RelativeLayout>
+
 </LinearLayout>

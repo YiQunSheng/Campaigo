@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <android.support.v7.widget.Toolbar
-        android:id="@+id/login_bar"
+        android:id="@+id/Apply_Toolbar"
         app:title="活动申请"
         app:titleTextColor="@color/white"
         android:layout_width="match_parent"
@@ -13,180 +13,198 @@
         android:background="@color/primary">
     </android.support.v7.widget.Toolbar>
 
-    <TextView
-        android:layout_marginBottom="20dp"
-        android:padding="5dp"
-        android:background="#FF9800"
-        android:textColor="@color/white"
-        android:layout_marginTop="30dp"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="match_parent"
-        android:text="信息填写"
-        android:layout_height="wrap_content" />
+
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:gravity="center"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="384dp">
         <LinearLayout
+            android:background="@color/primary"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_margin="16dp"
+                android:layout_gravity="center"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/campaigns_white"/>
+            <TextView
+                android:layout_margin="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="申请一个新活动"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:textSize="24sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+
             android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:text="活动名称:"
-                android:gravity="center"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:textSize="17dp"
+                android:gravity="left|center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
                 android:padding="9dp"
-                android:background="#1976D2"
-                android:textColor="@color/white"
+                android:textColor="@color/secondary_text"
                 android:layout_weight="2.5"
                 />
-
             <EditText
                 android:id="@+id/edit_apply_name"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="3"
-                android:background="#0288D1"
                 android:hint="中英文数字不超过15字"
+                android:textColorHint="#A9A9A9"
                 android:maxLines="1"
                 android:padding="9dp"
-                android:text=""
-                android:textColor="@color/white"
-                android:textColorHint="@color/primary_light"
-                android:textSize="17dp" />
+                android:textSize="16dp" />
 
         </LinearLayout>
-
+        <View
+            android:background="@color/secondary_text"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
-                android:background="#1976D2"
                 android:gravity="center"
                 android:padding="9dp"
                 android:text="活动开始时间："
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textColor="@color/secondary_text"
+                android:textSize="16sp" />
 
             <TextView
+                android:text="点击设置开始时间"
                 android:id="@+id/edit_apply_starttime"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:background="#0288D1"
                 android:padding="9dp"
-                android:textSize="18dp"
-                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textColor="#A9A9A9"
                 android:textColorHint="#A9A9A9" />
 
         </LinearLayout>
-
+        <View
+            android:background="@color/secondary_text"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
         <LinearLayout
             android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
-                android:gravity="center"
+                android:gravity="left"
                 android:text="活动结束时间"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:layout_height="match_parent"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:padding="9dp"
-                android:background="#1976D2"
-                android:textColor="@color/white"
+                android:textColor="@color/secondary_text"
                 android:layout_weight="2.5"
                 />
 
             <TextView
-                android:textColorHint="#A9A9A9"
+                android:text="点击设置结束时间"
                 android:id="@+id/edit_apply_finishedline"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_weight="3"
                 android:layout_height="match_parent"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:padding="9dp"
-                android:background="#0288D1"
-                android:textColor="@color/white" />
+                android:textColor="#A9A9A9" />
 
         </LinearLayout>
+        <View
+            android:background="@color/secondary_text"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
         <LinearLayout
             android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:text="报名截止时间："
-                android:gravity="center"
-                android:layout_width="0dp"
+                android:gravity="left"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:padding="9dp"
-                android:background="#0288D1"
-                android:textColor="@color/white"
+                android:textColor="@color/secondary_text"
                 android:layout_weight="2.5"
                 />
 
             <TextView
+                android:text="点击设置报名截止时间"
                 android:textColorHint="#A9A9A9"
                 android:id="@+id/edit_apply_endedline"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:padding="9dp"
-                android:background="#1976D2"
-                android:textColor="@color/white" />
+                android:textColor="#A9A9A9" />
 
         </LinearLayout>
+        <View
+            android:background="@color/secondary_text"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
         <LinearLayout
             android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
+            android:orientation="vertical">
             <TextView
-                android:gravity="center"
+                android:gravity="left"
                 android:text="活动描述："
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:padding="9dp"
-                android:background="#0288D1"
-                android:textColor="@color/white"
+                android:textColor="@color/secondary_text"
                 android:layout_weight="2.5"
                 />
 
             <EditText
-                android:hint=" 中英文数字不超过30字"
-                android:textColorHint="@color/primary_light"
-                android:maxLines="1"
+                android:hint="中英文数字不超过30字"
+                android:maxLines="3"
                 android:id="@+id/edit_apply_describe"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_weight="3"
+                android:padding="9dp"
                 android:layout_height="match_parent"
-                android:background="#1976D2"
-                android:textColor="@color/white" />
+                android:textColor="@color/secondary_text" />
 
         </LinearLayout>
+        <View
+            android:background="@color/secondary_text"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -195,12 +213,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FF9800"
-                android:text="申请"
+                android:text="申请本活动"
                 android:textSize="20sp"
                 android:layout_margin="20dp"
                 android:textColor="@color/white"/>
         </LinearLayout>
-
     </LinearLayout>
 </ScrollView>
 
