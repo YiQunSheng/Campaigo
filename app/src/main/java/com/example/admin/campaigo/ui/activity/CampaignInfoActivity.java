@@ -65,6 +65,11 @@ public class CampaignInfoActivity extends AppCompatActivity {
         text_describe.setText(intent.getStringExtra("describe"));
         endeadTimestamp = Timestamp.valueOf(intent.getStringExtra("endeadTime"));
         button_TakePart = (Button) findViewById(R.id.button_takePartIn);
+        if (getPosition().equals("org") ||(getPosition().equals("tea") )||hasToken.equals("true"))
+            button_TakePart.setVisibility(View.INVISIBLE);
+        else
+            button_TakePart.setVisibility(View.VISIBLE);
+
         campaignId = String.valueOf(intent.getIntExtra("id",0));
         Log.d("id", campaignId);
         hasTokenPartInurl = hasTokenPartInurl + campaignId + "&userid=" + getId();

@@ -35,7 +35,7 @@
             android:layout_height="match_parent"/>
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
-            android:backgroundTint="@color/accent"
+            app:backgroundTint="@color/accent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
