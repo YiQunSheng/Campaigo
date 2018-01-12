@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.admin.campaigo.ui.activity.FollowerActivity">、
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/Follower_Toolbar"
+        app:title="活动参与者"
+        app:titleTextColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary">
+    </android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:background="@color/primary"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_margin="16dp"
+            android:layout_gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/takepart"/>
+        <TextView
+            android:id="@+id/text_followerNumber"
+            android:layout_margin="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="共有0个参与者"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:textSize="24sp"/>
+    </LinearLayout>
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/follower_recyclerview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+</android.support.v7.widget.RecyclerView>
+</LinearLayout>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/primary"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="com.example.admin.campaigo.ui.activity.ChangePwActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/login_bar"
+
+        app:titleTextColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary">
+    </android.support.v7.widget.Toolbar>
+    <TextView
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        android:fontFamily="cursive"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="Campaigo"
+        />
+    <LinearLayout
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="原密码："
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <EditText
+            android:theme="@style/style_edit_login"
+            android:id="@+id/edit_oldpasswd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:inputType="textPassword" />
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="新密码："
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <EditText
+            android:theme="@style/style_edit_login"
+            android:id="@+id/edit_newpasswd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:inputType="textPassword" />
+        <TextView
+            android:layout_margin="10dp"
+            android:gravity="right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="密码长度为6-15位,限数字字母"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <Button
+            android:layout_margin="20dp"
+            android:layout_weight="0.2"
+            android:layout_gravity="center"
+            android:id="@+id/button_modify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_dark"
+            android:text="提交修改"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            />
+        <ProgressBar
+            android:layout_weight="0.1"
+            android:id="@+id/progress_bar_modify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"/>
+    </LinearLayout>
+</LinearLayout>

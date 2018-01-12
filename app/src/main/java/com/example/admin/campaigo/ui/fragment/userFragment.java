@@ -20,6 +20,7 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.alibaba.fastjson.JSON;
+import com.example.admin.campaigo.ui.activity.ChangePwActivity;
 import com.example.admin.campaigo.ui.activity.MainActivity;
 
 import com.example.admin.campaigo.model.User;
@@ -102,8 +103,14 @@ public class userFragment extends Fragment implements View.OnClickListener{
                     text_position.setText("");
                     Toast.makeText(getActivity(), "登出成功！", Toast.LENGTH_SHORT).show();
                 }
-
-//                button_login.setText("登录");
+                break;
+            case R.id.menu_changePasswd:
+                if (NoLogedIn()) {
+                    Toast.makeText(getActivity(), "您没有登录,不能修改密码", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(getActivity(), ChangePwActivity.class);
+                    startActivity(intent);
+                }
                 break;
             default:
                 break;

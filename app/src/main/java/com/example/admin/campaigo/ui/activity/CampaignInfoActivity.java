@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.example.admin.campaigo.R;
+import com.example.admin.campaigo.model.Campaign;
 import com.example.admin.campaigo.model.User;
 import com.example.admin.campaigo.network.HttpUtil;
 
@@ -28,7 +29,10 @@ public class CampaignInfoActivity extends AppCompatActivity {
     TextView text_end ;
     TextView text_endead ;
     TextView text_describe ;
+    TextView text_organizer;
+    TextView text_followers;
     String campaignId;
+    String OrganiserName="";
     String DOMIN="http://115.159.55.118/";
     String url="http://115.159.55.118/campaign/register?id=";
     String hasTokenPartInurl = "http://115.159.55.118/campaign/regStatus?campaiId=";
@@ -49,23 +53,33 @@ public class CampaignInfoActivity extends AppCompatActivity {
         text_endead = (TextView) findViewById(R.id.text_campaignInfo_endedtime);
         text_end= (TextView) findViewById(R.id.text_campaignInfo_end);
         text_describe=(TextView) findViewById(R.id.text_campaignInfo_describe);
+        text_organizer=(TextView) findViewById(R.id.text_campaignInfo_organizer);
+        text_followers = (TextView) findViewById(R.id.text_campaignInfo_follower);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
-
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
+        Log.e("OrganizeID", String.valueOf(intent.getIntExtra("id",0)));
+        getOrganiserName(String.valueOf(intent.getIntExtra("id",0)));
         text_name.setText(intent.getStringExtra("name"));
         text_start.setText(intent.getStringExtra("startTime"));
         text_endead.setText(intent.getStringExtra("endeadTime"));
         text_end.setText(intent.getStringExtra("endTime"));
         text_describe.setText(intent.getStringExtra("describe"));
+        text_followers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(CampaignInfoActivity.this, FollowerActivity.class);
+                intent1.putExtra("CampaignID",intent.getIntExtra("id",0));
+                startActivity(intent1);
+            }
+        });
         endeadTimestamp = Timestamp.valueOf(intent.getStringExtra("endeadTime"));
         button_TakePart = (Button) findViewById(R.id.button_takePartIn);
-        if (getPosition().equals("org") ||(getPosition().equals("tea") )||hasToken.equals("true"))
+        if (getPosition().equals("org") ||(getPosition().equals("tea") )/*||hasToken.equals("true")*/)
             button_TakePart.setVisibility(View.INVISIBLE);
         else
             button_TakePart.setVisibility(View.VISIBLE);
@@ -150,6 +164,29 @@ public class CampaignInfoActivity extends AppCompatActivity {
         }
     }
 
+    private void getOrganiserName(String CampaignID) {
+//        Log.e("CampaginID", CampaignID);
+        String url="http://115.159.55.118/campaign/lender?campaiId=";
+        HttpUtil.sendOkHttpRequest(url+CampaignID, new okhttp3.Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                OrganiserName = "网络错误，无法获取组织者信息";
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+//                Log.e("Organize",response.body().string());
+                final User user = JSON.parseObject(response.body().string(), User.class);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        text_organizer.setText("由"+user.getUsname()+" 发布的活动");
+                    }
+                });
+            }
+        });
+    }
     private String UserPreferencetoJson() {
         User user = new User();
         user.init();

@@ -7,6 +7,7 @@ package com.example.admin.campaigo.ui.fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,13 +15,20 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.example.admin.campaigo.Adapter.CampaiAdapter;
@@ -57,11 +65,18 @@ public class yoursFragment extends Fragment {
     RecyclerView recyclerView;
     CampaiAdapter adapter;
     FloatingActionButton fab;
+    Toolbar toolbar;
+    SwipeRefreshLayout swipeRefreshLayout;
+    SearchView searchView;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         url = DOMIN + getUserId();
         Log.e("url,", url);
         inCampaigns = new ArrayList<>();
         View view = inflater.inflate(R.layout.fragment_yours, container, false);
+
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swpie_yours);
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.primary),getResources().getColor(R.color.accent));
+
         recyclerView = (RecyclerView) view.findViewById(R.id.list_yours_campaigns);
         fab = (FloatingActionButton) view.findViewById(R.id.fab);
         if(getPosition().equals("stu"))
@@ -71,16 +86,55 @@ public class yoursFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ApplyActivity.class);
                 startActivity(intent);
-
             }
         });
+        toolbar = (android.support.v7.widget.Toolbar) view.findViewById(R.id.Yours_Toolbar);
+
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+//        setHasOptionsMenu(true);
         final BottomNavigationView navigation = (BottomNavigationView) view.findViewById(R.id.bottom_yours);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        navigation.setSelectedItemId(R.id.item_yours_finished);
+        navigation.setSelectedItemId(R.id.item_yours_comming);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                switch (navigation.getSelectedItemId()) {
+                    case R.id.item_yours_comming:
+                        new GetCampaignsTask().execute();
+                        break;
+                    case R.id.item_yours_finished:
+                        new GetPassedCampaignsTask().execute();
+                        break;
+                    default:
+                        break;
+
+                }
+            }
+        });
         return view;
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.toolbar_search,menu);
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                Toast.makeText(getActivity(), "Search", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -98,6 +152,22 @@ public class yoursFragment extends Fragment {
         }
 
     };
+
+    private Toolbar.OnMenuItemClickListener onMenuItemClickListener = new Toolbar.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.action_search:
+                    Toast.makeText(getActivity(), "Search", Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    break;
+            }
+            return true;
+        }
+    };
+
+
     //从网络获取该用户的活动，并且更新内存中的活动列表。
     class GetCampaignsTask extends AsyncTask<Void, Integer, Boolean> {
         @Override
@@ -117,6 +187,7 @@ public class yoursFragment extends Fragment {
             adapter.notifyDataSetChanged();
             Log.e("Process SIze====>", String.valueOf(commingCampaigns.size()));
             Log.e("Process SIze====>", String.valueOf(passedCampaigns.size()));
+            swipeRefreshLayout.setRefreshing(false);
         }
         @Override
         protected Boolean doInBackground(Void... voids) {
@@ -125,6 +196,7 @@ public class yoursFragment extends Fragment {
                 public void onFailure(Call call, IOException e) {
 
                     Log.e("GetCamsListError", "Net Error");
+                    swipeRefreshLayout.setRefreshing(false);
                 }
 
                 @Override
@@ -132,6 +204,7 @@ public class yoursFragment extends Fragment {
                     CampaignsJson= response.body().string();
                     inCampaigns = JSON.parseArray(CampaignsJson, Campaign.class);
                     processCampaigns(inCampaigns);
+
                 }
             });
             return null;
@@ -155,6 +228,7 @@ public class yoursFragment extends Fragment {
             adapter.notifyDataSetChanged();
             Log.e("Process SIze====>", String.valueOf(commingCampaigns.size()));
             Log.e("Process SIze====>", String.valueOf(passedCampaigns.size()));
+            swipeRefreshLayout.setRefreshing(false);
         }
         @Override
         protected Boolean doInBackground(Void... voids) {

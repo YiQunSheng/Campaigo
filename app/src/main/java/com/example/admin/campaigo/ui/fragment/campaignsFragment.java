@@ -3,11 +3,14 @@ package com.example.admin.campaigo.ui.fragment;
 /**
  * Created by admin on 2017/12/15.
  */
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,8 +18,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -59,7 +67,9 @@ public class campaignsFragment extends  Fragment {
     String url ="http://115.159.55.118/campaign/search?wd=";
     String Searchurl;
     String campaignName= "";
+    SearchView searchView;
     RecyclerView recyclerView;
+    Toolbar toolbar;
 
      private EditText ET;
 //    private TextView searchTextView;
@@ -93,7 +103,7 @@ public class campaignsFragment extends  Fragment {
     private ViewPagerAdapter adapter;
     private ScheduledExecutorService scheduledExecutorService;//定时执行周期性任务
 
-    @Nullable
+//    @Nullable
 
 
     private void setView(){
@@ -126,8 +136,8 @@ public class campaignsFragment extends  Fragment {
             @Override
             public void onPageSelected(int position) {
                 title.setText(titles[position]);
-                dots.get(position).setBackgroundResource(R.drawable.dian);
-                dots.get(oldPosition).setBackgroundResource(R.drawable.dian);
+                dots.get(position).setBackgroundResource(R.drawable.pointnew);
+                dots.get(oldPosition).setBackgroundResource(R.drawable.pointold);
 
                 oldPosition = position;
                 currentItem = position;
@@ -181,6 +191,7 @@ public class campaignsFragment extends  Fragment {
     public void onStart() {
         // TODO Auto-generated method stub
         super.onStart();
+        Log.e("轮播Start", "start");
         scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         scheduledExecutorService.scheduleWithFixedDelay(new ViewPageTask(),2,2, TimeUnit.SECONDS);//参数1：initdelay。参数2：周期
     }
@@ -192,7 +203,8 @@ public class campaignsFragment extends  Fragment {
         @Override
         public void run() {
             currentItem = (currentItem + 1) % imageIds.length;
-            // mHandler.sendEmptyMessage(0);
+            Log.e("轮播到", String.valueOf(currentItem));
+//             mHandler.sendEmptyMessage(0);
         }
     }
 
@@ -230,33 +242,145 @@ public class campaignsFragment extends  Fragment {
 //轮播功能到此结束
 
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.toolbar_search,menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        SearchView.SearchAutoComplete textView = ( SearchView.SearchAutoComplete) searchView.findViewById(R.id.search_src_text);
+        textView.setTextColor(Color.WHITE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(getActivity(), "Submit", Toast.LENGTH_SHORT).show();
+                Searchurl = url+query;
+                new GetCampaignsTask().execute();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                Searchurl = url;
+                new GetCampaignsTask().execute();
+                return false;
+            }
+        });
+        super.onCreateOptionsMenu(menu, inflater);
+
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_campai_list, container, false);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_campaign);
-        Searchurl = url+campaignName;
-        swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#FF4081"),Color.parseColor("#303F9F"));
+
+        toolbar = (android.support.v7.widget.Toolbar) view.findViewById(R.id.Campaigns_Toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        setHasOptionsMenu(true);
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.primary),getResources().getColor(R.color.accent));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new GetCampaignsTask().execute();
+                HttpUtil.sendOkHttpRequest(url, new okhttp3.Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        if (getActivity() == null)
+                            return;
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getActivity(), "网络错误,请查看网络连接", Toast.LENGTH_SHORT).show();
+                                recyclerView = (RecyclerView)getActivity().findViewById(R.id.campai_list_recycler);
+                                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+                                List<Campaign> emptyCampaigns = new ArrayList<Campaign>();
+                                listAdapter = new CampaiAdapter(emptyCampaigns);
+                                recyclerView.setAdapter(listAdapter);
+                                recyclerView.setLayoutManager(layoutManager);
+                                listAdapter.notifyDataSetChanged();
+                                swipeRefreshLayout.setRefreshing(false);
+                            }
+                        });
+                    }
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        campaignsJson= response.body().string();
+                        searchCampaigns = JSON.parseArray(campaignsJson, Campaign.class);
+                        Collections.reverse(searchCampaigns); // 倒序排列
+                        if (getActivity() == null)
+                            return;
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                recyclerView = (RecyclerView)getActivity().findViewById(R.id.campai_list_recycler);
+                                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+                                listAdapter = new CampaiAdapter(searchCampaigns);
+                                recyclerView.setAdapter(listAdapter);
+                                recyclerView.setLayoutManager(layoutManager);
+                                listAdapter.notifyDataSetChanged();
+                                swipeRefreshLayout.setRefreshing(false);
+                            }
+                        });
+                    }
+                });
             }
         });
         setView();
-        new GetCampaignsTask().execute();
-        //recyclerView = (RecyclerView) view.findViewById(R.id.campai_list_recycler);
-      //  LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-      //  recyclerView.setLayoutManager(layoutManager);
-       // CampaiAdapter adapter = new CampaiAdapter(campaignList);
-       // recyclerView.setAdapter(adapter);
 
+
+
+//        new GetCampaignsTask().execute();
+        HttpUtil.sendOkHttpRequest(url, new okhttp3.Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    if (getActivity() == null)
+                        return;
+                    getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), "网络错误,请查看网络连接", Toast.LENGTH_SHORT).show();
+                        recyclerView = (RecyclerView)getActivity().findViewById(R.id.campai_list_recycler);
+                        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+                        List<Campaign> emptyCampaigns = new ArrayList<Campaign>();
+                        listAdapter = new CampaiAdapter(emptyCampaigns);
+                        recyclerView.setAdapter(listAdapter);
+                        recyclerView.setLayoutManager(layoutManager);
+                        listAdapter.notifyDataSetChanged();
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                });
+                }
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    campaignsJson= response.body().string();
+                    searchCampaigns = JSON.parseArray(campaignsJson, Campaign.class);
+                    Collections.reverse(searchCampaigns); // 倒序排列
+                    if (getActivity() == null)
+                        return;
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            recyclerView = (RecyclerView)getActivity().findViewById(R.id.campai_list_recycler);
+                            LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+                            listAdapter = new CampaiAdapter(searchCampaigns);
+                            recyclerView.setAdapter(listAdapter);
+                            recyclerView.setLayoutManager(layoutManager);
+                            listAdapter.notifyDataSetChanged();
+                        }
+                    });
+                }
+            });
         return view;
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ET = (EditText) getActivity().findViewById(R.id.search_campaign);
+        /*ET = (EditText) getActivity().findViewById(R.id.search_campaign);
         TextView searchTextView = (TextView) getActivity().findViewById(R.id.activity_search);
 
         ET.setOnClickListener(new View.OnClickListener() {
@@ -275,7 +399,7 @@ public class campaignsFragment extends  Fragment {
                 new GetCampaignsTask().execute();
                 Log.e("What's in thedittext??", ET.getText().toString());
             }
-        });
+        });*/
     }
 
     class GetCampaignsTask extends AsyncTask<Void, Integer, Boolean> {

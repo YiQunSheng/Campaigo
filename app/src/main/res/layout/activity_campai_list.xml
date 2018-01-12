@@ -6,99 +6,94 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.admin.campaigo.ui.fragment.campaignsFragment">
-    <include
-        android:id="@+id/home_titlebar"
-        layout="@layout/campaigns_title_bar"/>
-    <!--图片轮播-->
-    <FrameLayout
-        android:layout_weight="2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
 
+    <!--图片轮播-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/Campaigns_Toolbar"
+        app:titleTextColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary">
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
         <android.support.v4.view.ViewPager
+            android:layout_margin="8dp"
             android:id="@+id/vp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="0.1"
+        android:layout_gravity="bottom"
+        android:background="#33000000"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="图片标题"
+            android:textColor="@android:color/white" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="35dip"
-            android:layout_gravity="bottom"
-            android:background="#33000000"
-            android:gravity="center"
-            android:orientation="vertical" >
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dip"
+            android:orientation="horizontal" >
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="图片标题"
-                android:textColor="@android:color/white" />
+            <View
+                android:id="@+id/dot_0"
+                android:layout_width="5dip"
+                android:layout_height="5dip"
+                android:layout_marginLeft="2dip"
+                android:layout_marginRight="2dip"
+                android:background="@drawable/pointnew"/>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dip"
-                android:orientation="horizontal" >
+            <View
+                android:id="@+id/dot_1"
+                android:layout_width="5dip"
+                android:layout_height="5dip"
+                android:layout_marginLeft="2dip"
+                android:layout_marginRight="2dip"
+                android:background="@drawable/pointold"/>
+            <View
+                android:id="@+id/dot_2"
+                android:layout_width="5dip"
+                android:layout_height="5dip"
+                android:layout_marginLeft="2dip"
+                android:layout_marginRight="2dip"
+                android:background="@drawable/pointold"/>
+            <View
+                android:id="@+id/dot_3"
+                android:layout_width="5dip"
+                android:layout_height="5dip"
+                android:layout_marginLeft="2dip"
+                android:layout_marginRight="2dip"
+                android:background="@drawable/pointold"/>
+            <View
+                android:id="@+id/dot_4"
+                android:layout_width="5dip"
+                android:layout_height="5dip"
+                android:layout_marginLeft="2dip"
+                android:layout_marginRight="2dip"
+                android:background="@drawable/pointold"/>
 
-                <View
-                    android:id="@+id/dot_0"
-                    android:layout_width="5dip"
-                    android:layout_height="5dip"
-                    android:layout_marginLeft="2dip"
-                    android:layout_marginRight="2dip"
-                    android:background="@drawable/dian"/>
-
-                <View
-                    android:id="@+id/dot_1"
-                    android:layout_width="5dip"
-                    android:layout_height="5dip"
-                    android:layout_marginLeft="2dip"
-                    android:layout_marginRight="2dip"
-                    android:background="@drawable/dian"/>
-                <View
-                    android:id="@+id/dot_2"
-                    android:layout_width="5dip"
-                    android:layout_height="5dip"
-                    android:layout_marginLeft="2dip"
-                    android:layout_marginRight="2dip"
-                    android:background="@drawable/dian"/>
-                <View
-                    android:id="@+id/dot_3"
-                    android:layout_width="5dip"
-                    android:layout_height="5dip"
-                    android:layout_marginLeft="2dip"
-                    android:layout_marginRight="2dip"
-                    android:background="@drawable/dian"/>
-                <View
-                    android:id="@+id/dot_4"
-                    android:layout_width="5dip"
-                    android:layout_height="5dip"
-                    android:layout_marginLeft="2dip"
-                    android:layout_marginRight="2dip"
-                    android:background="@drawable/dian"/>
-
-            </LinearLayout>
         </LinearLayout>
-    </FrameLayout>
-    <LinearLayout
-        android:layout_margin="15dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:text="校园活动浏览"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
     </LinearLayout>
+
+
 <android.support.v4.widget.SwipeRefreshLayout
-    android:layout_weight="1.5"
+    android:layout_weight="3"
     android:id="@+id/swipe_campaign"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="0dp">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/campai_list_recycler"
         android:layout_width="match_parent"

@@ -104,34 +104,46 @@ public class ApplyActivity extends AppCompatActivity {
         buttonApply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!isNameValied(edit_apply_name.getText().toString()) || !isStartValied(edit_apply_startTime.getText().toString())
-                        || !isendValied(edit_apply_endTime.getText().toString()) || !isendearValied(edit_apply_endeadTime.getText().toString())
-                        || !isdescribeValied(edit_apply_describe.getText().toString())) {
-                    Toast.makeText(ApplyActivity.this, "格式错误", Toast.LENGTH_SHORT).show();
-                }else if (recordCalendar.getTimeInMillis() < System.currentTimeMillis()) {
-                    Toast.makeText(ApplyActivity.this, "活动开始时间不能早于现在时间", Toast.LENGTH_SHORT).show();
+                if (!isNameValied(edit_apply_name.getText().toString()) ) {
+                    Toast.makeText(ApplyActivity.this, "活动名称格式错误", Toast.LENGTH_SHORT).show();
                 }
-                else if (recordCalendar.getTimeInMillis() >recordCalendarend.getTimeInMillis()) {
-                    Toast.makeText(ApplyActivity.this, "活动结束时间不能早于开始时间", Toast.LENGTH_SHORT).show();
+                else if (!isStartValied(edit_apply_startTime.getText().toString())) {
+                    Toast.makeText(ApplyActivity.this, "请输入开始时间", Toast.LENGTH_SHORT).show();
                 }
-                else if (recordCalendar.getTimeInMillis()<recordCalendarendead.getTimeInMillis()) {
-                    Toast.makeText(ApplyActivity.this, "活动报名截止时间不能晚于开始时间", Toast.LENGTH_SHORT).show();
+                else if (!isendValied(edit_apply_endTime.getText().toString())) {
+                    Toast.makeText(ApplyActivity.this, "请输入结束时间", Toast.LENGTH_SHORT).show();
                 }
+                else if (!isendearValied(edit_apply_endeadTime.getText().toString())) {
+                    Toast.makeText(ApplyActivity.this, "请输入报名截止时间", Toast.LENGTH_SHORT).show();
+                }
+                else if (!isdescribeValied(edit_apply_describe.getText().toString())) {
+                    Toast.makeText(ApplyActivity.this, "活动描述格式错误", Toast.LENGTH_SHORT).show();
+                }
+                else if (recordCalendar.getTimeInMillis() < System.currentTimeMillis()) {
+                        Toast.makeText(ApplyActivity.this, "活动开始时间不能早于现在时间", Toast.LENGTH_SHORT).show();
+                    }
+                else if (recordCalendar.getTimeInMillis() > recordCalendarend.getTimeInMillis()) {
+                        Toast.makeText(ApplyActivity.this, "活动结束时间不能早于开始时间", Toast.LENGTH_SHORT).show();
+                    }
+                else if (recordCalendar.getTimeInMillis() < recordCalendarendead.getTimeInMillis()) {
+                        Toast.makeText(ApplyActivity.this, "活动报名截止时间不能晚于开始时间", Toast.LENGTH_SHORT).show();
+                    }
                 else if (recordCalendarendead.getTimeInMillis() < System.currentTimeMillis()) {
-                    Toast.makeText(ApplyActivity.this, "活动报名截止时间不能早于现在时间", Toast.LENGTH_SHORT).show();
-                }
+                        Toast.makeText(ApplyActivity.this, "活动报名截止时间不能早于现在时间", Toast.LENGTH_SHORT).show();
+                    }
                 else {
-                    Campaign testCam = new Campaign();
-                    testCam.setCaname(edit_apply_name.getText().toString());
-                    testCam.setStartline(Timestamp.valueOf(edit_apply_startTime.getText().toString()));
-                    testCam.setEndeadline(Timestamp.valueOf(edit_apply_endeadTime.getText().toString()));
-                    testCam.setEndline(Timestamp.valueOf(edit_apply_endTime.getText().toString()));
-                    testCam.setDescribe(edit_apply_describe.getText().toString());
-                    String testJson = JSON.toJSONString(testCam);
-                    url = DOMIN + getUserId() + "&info=" + testJson;
-                    Log.d("Succeed", url);
-                    new ApplyTask().execute();
-                }
+                        Campaign testCam = new Campaign();
+                        testCam.setCaname(edit_apply_name.getText().toString());
+                        testCam.setStartline(Timestamp.valueOf(edit_apply_startTime.getText().toString()));
+                        testCam.setEndeadline(Timestamp.valueOf(edit_apply_endeadTime.getText().toString()));
+                        testCam.setEndline(Timestamp.valueOf(edit_apply_endTime.getText().toString()));
+                        testCam.setDescribe(edit_apply_describe.getText().toString());
+                        String testJson = JSON.toJSONString(testCam);
+                        url = DOMIN + getUserId() + "&info=" + testJson;
+                        Log.d("Succeed", url);
+                        new ApplyTask().execute();
+                    }
+
             }
         });
     }

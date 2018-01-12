@@ -42,46 +42,52 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
-    <LinearLayout
+    <ScrollView
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_weight="1">
-        <TextView
-            android:layout_margin="16dp"
-            android:text="身份信息"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        android:layout_height="0dp">
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1">
             <TextView
-                android:id="@+id/text_position"
                 android:layout_margin="16dp"
-                android:text="未登录"
+                android:text="身份信息"
+                android:textSize="24sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/text_position"
+                    android:layout_margin="16dp"
+                    android:text="未登录"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <TextView
+                android:background="@color/secondary_text"
+                android:textSize="24sp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+            <TextView
+                android:layout_margin="16dp"
+                android:text="参与活动数量"
+                android:textSize="24sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_margin="16dp"
+                android:text=""
                 android:textSize="16sp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+    </ScrollView>
 
-        <TextView
-            android:background="@color/secondary_text"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
-        <TextView
-            android:layout_margin="16dp"
-            android:text="参与活动数量"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_margin="16dp"
-            android:text="20"
-            android:textSize="16sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
 </LinearLayout>

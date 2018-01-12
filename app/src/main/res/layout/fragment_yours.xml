@@ -8,14 +8,13 @@
     >
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/yours_Toolbar"
+        android:id="@+id/Yours_Toolbar"
         app:title="你的活动"
         app:titleTextColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primary">
     </android.support.v7.widget.Toolbar>
-
     <android.support.design.widget.BottomNavigationView
         app:itemTextColor="@color/primary"
         android:id="@+id/bottom_yours"
@@ -28,11 +27,17 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.v7.widget.RecyclerView
-            android:layout_weight="1"
-            android:id="@+id/list_yours_campaigns"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swpie_yours"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:layout_weight="1"
+                android:id="@+id/list_yours_campaigns"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             app:backgroundTint="@color/accent"

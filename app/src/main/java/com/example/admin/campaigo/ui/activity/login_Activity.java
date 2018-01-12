@@ -34,6 +34,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.regex.Pattern;
 
+import cn.bmob.sms.BmobSMS;
+import cn.bmob.sms.exception.BmobException;
+import cn.bmob.sms.listener.RequestSMSCodeListener;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -53,13 +56,14 @@ public class login_Activity extends AppCompatActivity implements View.OnClickLis
     ProgressBar progressBar;//在这里加入了一个进度条
     Button button_back;
     String url;
+//    TextView textForget;
     android.support.v7.widget.Toolbar toolbar;
     String encodedPasswd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        BmobSMS.initialize(this, "069052c8377d7adbb7754f03d03f6fa3");
         toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.login_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
@@ -68,6 +72,7 @@ public class login_Activity extends AppCompatActivity implements View.OnClickLis
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         edit_user =(EditText) findViewById(R.id.edit_username);
         edit_passwd =(EditText) findViewById(R.id.edit_passwd);
+//        textForget = (TextView) findViewById(R.id.text_forgetpw);
         Button button_login = (Button) findViewById(R.id.button_submit);
 //        responseText = (TextView) findViewById(R.id.text_response);
         button_login.setOnClickListener(this);//在Onclick调用网络传输
@@ -79,17 +84,32 @@ public class login_Activity extends AppCompatActivity implements View.OnClickLis
                 finish();
             }
         });
-
+        //短信验证部分，暂时无用
+        /*textForget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BmobSMS.requestSMSCode(login_Activity.this, "17774009481", "Sendok", new RequestSMSCodeListener() {
+                    @Override
+                    public void done(Integer integer, BmobException e) {
+                        if (e == null) {
+                            Toast.makeText(login_Activity.this, "Send Success", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });*/
     }
 
     @Override
     //个是设置点击事件的 把里面case后面的名字换成你的按钮。里面涉及到的控件要改成你的名字。
     public void onClick(View view) {
-
         switch (view.getId()) {
             case R.id.button_submit:
-                if (!isNameValied(edit_user.getText().toString()) || !isPasswdValied(edit_passwd.getText().toString())) {
-                    Toast.makeText(login_Activity.this, "格式错误", Toast.LENGTH_SHORT).show();
+                if (!isNameValied(edit_user.getText().toString()) ) {
+                    Toast.makeText(login_Activity.this, "用户名格式错误", Toast.LENGTH_SHORT).show();
+                    break;
+                } else if (!isPasswdValied(edit_passwd.getText().toString())) {
+                    Toast.makeText(login_Activity.this, "密码格式错误", Toast.LENGTH_SHORT).show();
                     break;
                 } else {
                     Log.e("User", edit_user.getText().toString());
@@ -98,11 +118,11 @@ public class login_Activity extends AppCompatActivity implements View.OnClickLis
                     new LoginTask().execute();
 
                 }
-
                 break;
             default:
                 break;
         }
+
 
     }
 
