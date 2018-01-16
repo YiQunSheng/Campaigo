@@ -77,7 +77,7 @@
                 android:layout_height="1dp" />
             <TextView
                 android:layout_margin="16dp"
-                android:text="参与活动数量"
+                android:text="去参加一些活动吧"
                 android:textSize="24sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
